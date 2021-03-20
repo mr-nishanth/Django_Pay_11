@@ -1,0 +1,167 @@
+Models.py Recap
+
+class Employee(models.Model):
+	- Here Employee is subClass of models.Model
+	
+
+Work-Follow	
+	
+User => localhost -> httpRequest => views.py	=>models.py => db
+User <= localhost <- httpResponse <= templates <= views.py	<= models.py <= db
+
+
+=> Project related stuff setting.py la register pannauim
+=> models(db) related stuff admin.py la register pannauim
+
+
+
+Day6 Recap
+
+- makemigrations , migrate , admin.py -> adding models, createsuperuser
+
+
+
+
+===========================================================================================================
+1) Project
+2) Application
+3) create urls.py file
+4) create templates folder -> app_name folder also
+5) create static folder -> css , images, js folder also
+6) register and add dir templates , static and app_name in setting.py
+7) views.py
+8) urls.py project-level import urls.py in app level file
+9) templates la html file creation
+10) app-level urls register urls
+11) manage.py runserver
+12) check the website
+
+13) models.py la table create pannoim with help of models.Model 
+14) etha admin.py la register pannoim
+15) makemigrations
+16) migrate
+17) check the table creation query (py manage.py sqlitemigrate)
+18) createsuperuser (py manage.py createsuperuser)
+===========================================================================================================
+
+https://docs.djangoproject.com/en/3.1/topics/forms/
+
+
+https://docs.djangoproject.com/en/3.1/ref/csrf/
+
+
+Day 7: Notes :-
+
+1. Form
+	Form-Security
+	1) Security
+		- Encryption:
+		Avoid Intruders
+		
+			
+
+
+Step 1: Create new file in app-level filename(forms.py)
+
+			from django import forms
+
+			# Create subClass for form parent class
+
+			class EmployeeInfoForm(forms.Form):
+				name = forms.CharField()
+				salary = forms.IntegerField()
+    
+		=> After created the form
+		
+Step 2:
+			Go to views.py 
+			-> first html file ikku views la irruthu information or input potchu ipo
+			-> But ipo small change
+			
+			-> now views.py , forms.py la irruthu input vakapothu
+			-> this is a diffrence
+			
+			
+			=> Open views.py
+			
+			
+			
+		
+
+			from django.shortcuts import render
+
+			# Create your views here.
+
+			from django.http import HttpResponse
+
+			def display(request):
+				return HttpResponse("<h1>Hello</h1>")
+
+
+			from . import forms
+			def empDetailsView(request):
+				form = forms.EmployeeInfoForm()
+				
+				empInfo = {'form': form}
+				return render(request , 'formApp/input.html' , context=empInfo)
+
+
+Step 3: 
+		- go to templates/app_name folder
+		
+		<!DOCTYPE html>
+		<html lang="en">
+			{% load static %}
+		<head>
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Form</title>
+		</head>
+		<body>
+			<div class="container">
+				<form action="" method="post">
+					<!-- {{ form }} vertical-->
+					{{ form.as_p }}
+					{% csrf_token %}
+					<input type="submit" value="Accept/Submit">
+				</form>
+			</div>
+
+		</body>
+		</html>
+				
+
+Step 4:
+	- Go to urls.py
+	
+	
+	
+			"""formsDemo URL Configuration
+
+		The `urlpatterns` list routes URLs to views. For more information please see:
+			https://docs.djangoproject.com/en/3.1/topics/http/urls/
+		Examples:
+		Function views
+			1. Add an import:  from my_app import views
+			2. Add a URL to urlpatterns:  path('', views.home, name='home')
+		Class-based views
+			1. Add an import:  from other_app.views import Home
+			2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+		Including another URLconf
+			1. Import the include() function: from django.urls import include, path
+			2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+		"""
+		from django.contrib import admin
+		from django.urls import path
+
+		from formApp import views
+		urlpatterns = [
+			# path('admin/', admin.site.urls),
+			path('home/',views.display),
+			path('form/',views.empDetailsView)
+		]
+
+
+
+=======================================================================================================================================

@@ -1,0 +1,142 @@
+CRUD Operation
+
+=======================================================================================
+1) Create project
+django-admin startproject crudDemo
+
+2) cd crudDemo
+
+3) Application Creation
+	py manage.py startapp crudApp
+	
+
+4) Project_Level	
+	- Create templates folder
+	- Sub folder
+		crudApp
+			base.html
+			
+5) Setting.py => UPDATE
+				import od
+				BASE_DIR
+				TEMPLATE_DIR
+				install app--> 'crudApp'
+				
+
+6) models.py -> DB Conect
+
+					class Student(models.Model):
+						sno = models.IntegerField()
+						sname = models.CharField(max_length=20)
+						........................................
+						........................................
+						
+7) python manage.py makemigration
+
+8) python manage.py migrate
+
+9) admin.py 
+	- from crudApp.models import Student
+	
+	class StudentAdmin(admin.ModelAdmin):
+		studentlist =['sno','sname',...........]
+		
+	admin.site.register(Student,StudentAdmin)
+	
+	
+10) python manage.py createsuperuser
+
+11) python manage.py runserver
+
+12) create generate.py
+	pip install Faker
+	
+	127.0.0.1/admin
+	
+	
+========================================================================================
+
+
+1) html -> input -> views(business logic)	-> models
+	eg:
+		html     => Customer Care Executive
+		views.py => Business Analyst
+		
+
+	
+	
+views.py
+
+urls.py
+
+templates/crudApp/base.html	
+
+========================================================================================
+					
+13)	views.py
+
+from crudApp.models import Student
+
+def retrieve_view(request):
+	student_data = Student.objects.all()
+	return render(request,'crudApp/retrieve.html',context={'student':student_data})
+	
+	
+14) create HTML files
+	->1
+		base.html
+		
+		<html>
+		<head>
+			<title></title>
+		</head>
+		<body>
+			{% block content %}
+			
+			{% endblock %}
+		</body>
+		</html>
+
+	->2
+		{% extands 'crudApp/retrieve.html' %}
+		{% block content %}
+		
+		
+		{% endblock %}}
+	
+	
+	
+	
+15)	
+	urls.py
+	
+	from crudApp import views
+	path('check',views.retrieve_view)
+	
+	
+16)
+		python manage runserver
+		
+			
+==============================================================
+
+1==>user keta irruthu data vakunaa (FORMS)			
+2==>business logic (VIEWS)
+3==>DB connection (MODELS)
+
+	
+==============================================================	
+	
+
+
+UPDATE
+		- 1) views
+		
+	
+	
+	
+	
+	
+					
+					
+					

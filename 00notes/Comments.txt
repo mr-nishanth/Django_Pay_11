@@ -1,0 +1,61 @@
+Step 1 : Create a floder
+
+Step 2 : Start Project
+	
+			django-admin startproject <project-name> eg:firstProject
+
+			(Optional) tree -f 
+					you can see the structure of project in CMD
+					
+
+
+Step 3 : Move to Created Project					
+			
+			cd <Created Project>
+			
+
+Step 4 : Run Server
+
+				python manage.py runserver
+				
+				http://127.0.0.1:8000
+				127.0.0.1 - IP Address - localhost.
+				8000 - Port No.
+				
+				**= After run this comment , 
+				you can see the sqlite database file ,
+				it's automatically created by django =**
+				
+				web Server:
+					Providing environment to run web application
+					
+					Server duty 
+						HTTPRequest <-- Web Components --> HTTPResponse
+						
+						
+				Now WebServer Ready
+				Django Project - <project-name> eg:firstProject
+				
+				
+Step 5 : Web Application Creation:
+		
+		python .\manage.py startapp <application-name> eg:firstApp
+
+Step 6 : After Created Web Application
+		
+		- Go to Setting.py in <Project-Floder> eg:firstProject
+		- INSTALLED_APPS -> register it
+		- <application-name> eg:firstApp
+
+Step 7 : Go to Views.py in firstApp
+		
+		Create a function or class
+
+
+Step 8 :
+			Connect the function 
+			Go to URL.py
+			import the function or class and add the path in urlpatterns
+			
+Step 9 :
+			Rerun the Django Server

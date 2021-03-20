@@ -1,0 +1,48 @@
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+
+
+
+
+
+Now create the static floder in manage.py location
+
+Step 1 : Create Static floder
+			I this folder we create CSS file and images
+				
+				static
+				I this static file create other floder called images
+				
+				
+Step 2 : Go to settings.py
+			import os
+			BASE_DIR2 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+			STATIC_DIR = os.path.join(BASE_DIR2, 'static')
+
+Step 3 : End of the settings.py file
+
+		Adding
+			
+			STATICFILES_DIRS = [
+					STATIC_DIR,
+			]
+		
+		this lines
+		
+Step 4 : Chech this 
+			localhost:8000/static/images/img-name.jpg
+			eg:
+				http://localhost:8000/static/images/jokerandroid.jpg
+				
+				
+Step 5: Go to HTML file
+
+		{% load static %}
+		<img src="{% static 'images/img-name' %}" alt="my_img">
+		
+Step 6:
+		Create CSS folder also in static floder
+		
+		
+				

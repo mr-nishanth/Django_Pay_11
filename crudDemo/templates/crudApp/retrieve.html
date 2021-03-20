@@ -1,0 +1,28 @@
+
+
+{% extends 'crudApp\base.html' %}
+{% block content %}
+
+    <h1>Students Details</h1>
+    <table>
+    <thead>
+        <th>Student No </th>
+        <th>Studend Name</th>
+        <th>Student class</th>
+        <th>Student Address</th>
+    </thead>
+    {% for st in stu_info %}
+    <tr>
+        <td>{{ st.sno }}</td>
+        <td>{{ st.sname }}</td>
+        <td>{{ st.sclass }}</td>
+        <td>{{ st.saddress }}</td>
+        <td><a href="/crudApp/update/{{st.id}}">Update</a><a href="/crudApp/delete/{{ st.id }}">Delete</a></td>
+    </tr>
+
+    {% endfor %}
+    </table>
+
+    <a href="/crudApp/create"><button type="button">Add New Student</button></a>
+
+{%endblock%}

@@ -1,0 +1,19 @@
+day10
+
+Dive into CRUD
+
+Step 1:
+		C(Create)   - is finiesh with help of faker
+
+Step 2: 
+		R(Retrieve) - Select 						
+					- views.py
+						- data 
+						-> templtes
+				
+
+Step 3: U(Update)   -
+			
+			
+
+Step 4: D(Delete)			

@@ -1,0 +1,152 @@
+day9
+
+CRUD Operation
+Function Based views
+
+Create			- Data   => Insert
+
+Retrieve		- select => select * from table-name
+
+Update			- Update
+
+Delete			- Delete
+
+
+
+1.Function Based Views
+2.Class Based Views
+
+
+=====================================================
+Database vainthutchunaa
+	- sudden mind ikku vara vadyathu models.py
+		BackEnd - models.Model
+				refer:https://docs.djangoproject.com/en/3.1/topics/db/models/
+		
+		FrontEnd - forms.Form
+		
+	- models.py create tables
+	
+		python code ---> models.Model ---> Database
+		
+		ModelFrom : https://docs.djangoproject.com/en/3.1/topics/forms/modelforms/
+	
+	
+	
+	
+	
+====================================================================
+
+Step 1:
+		create project and app
+		
+		after that
+		
+Step 2:
+			go to models.py
+			
+			-	Create database table fields with help of models.Model
+				eg:
+				
+				from django.db import models
+
+				# Create your models here.
+
+				# now create class
+
+				class Student(models.Model):
+					sno = models.IntegerField()
+					sname = models.CharField(max_length=30)
+					sclass = models.IntegerField()
+					saddress = models.CharField(max_length=50)
+
+    
+
+Step 3:
+				Go to CMD type 
+				
+					(DjangoPay-dcNYkXsm) C:\DjangoPay\crudDemo>py manage.py makemigrations
+					Migrations for 'crudApp':
+					  crudApp\migrations\0001_initial.py
+						- Create model Student
+						
+						
+Step 4:
+
+				Go to CMD type
+				
+				(DjangoPay-dcNYkXsm) C:\DjangoPay\crudDemo>py manage.py migrate
+				Operations to perform:
+				  Apply all migrations: admin, auth, contenttypes, crudApp, sessions
+				Running migrations:
+				  Applying contenttypes.0001_initial... OK
+				  Applying auth.0001_initial... OK
+				  Applying admin.0001_initial... OK
+				  Applying admin.0002_logentry_remove_auto_add... OK
+				  Applying admin.0003_logentry_add_action_flag_choices... OK
+				  Applying contenttypes.0002_remove_content_type_name... OK
+				  Applying auth.0002_alter_permission_name_max_length... OK
+				  Applying auth.0003_alter_user_email_max_length... OK
+				  Applying auth.0004_alter_user_username_opts... OK
+				  Applying auth.0005_alter_user_last_login_null... OK
+				  Applying auth.0006_require_contenttypes_0002... OK
+				  Applying auth.0007_alter_validators_add_error_messages... OK
+				  Applying auth.0008_alter_user_username_max_length... OK
+				  Applying auth.0009_alter_user_last_name_max_length... OK
+				  Applying auth.0010_alter_group_name_max_length... OK
+				  Applying auth.0011_update_proxy_permissions... OK
+				  Applying auth.0012_alter_user_first_name_max_length... OK
+				  Applying crudApp.0001_initial... OK
+				  Applying sessions.0001_initial... OK
+							
+				(Optional)
+				
+				
+				
+Step 5:
+					Go to admin.py
+					
+					- Na database oodaaa connect pannaaa models.py inu  onu vaitchu irrukainu 
+						admin.py la pooiee sollauim
+						
+						
+						
+Step 6:
+					Create SuperUser 
+					
+					After that
+					
+Step 7: 	go to browser
+
+			
+
+					(Optional)
+					
+
+					pip install Faker
+							
+						Faker is a Python package that generates fake data for you.
+						Whether you need to bootstrap your database, create good-looking XML documents,
+						fill-in your persistence to stress test it, or anonymize data taken from a production
+						
+						
+						- create faker.py
+						
+						
+						
+===================================================================================================================
+Dive into CRUD
+
+Step 1:
+		C(Create)   - is finiesh with help of faker
+
+R(Retrieve) - Select 						
+				- views.py
+				- data 
+				-> templtes
+				
+U(Update)   -
+						
+						
+						
+						

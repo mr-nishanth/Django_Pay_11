@@ -1,0 +1,258 @@
+Day 8:
+====	Browser   ====
+	1. Internet Explorer
+	
+	2. Netscape Navigator 
+		=> Now Mozilla Foundation 
+			-> Multi-Tab support
+			
+			Must Watch:
+				-> https://developer.mozilla.org/en-US/search?q=Django
+
+
+			
+	*** Data is new Oil ***
+	- Browser => Open Source => Google Chrome is not Open Source
+	
+	- Open Source
+			1. Firefox
+			2. Brave
+			3. Chromium
+			
+			
+How do Internet browsers actually make money?
+	https://www.quora.com/How-do-Internet-browsers-actually-make-money			
+	
+	
+	
+	
+	
+	
+	
+===============================================================================================================
+	Session Management:
+	
+		Client 			- 				Server
+				  <-Browseing->
+				  
+				  
+		How Session Management work ?
+		
+		real-time eg:
+					Two way
+					1.Hotel order
+					Nambaa hotel  ikku poeii order pannaratha waiter(server) mind la vaitchupagaa
+					
+					2. Temple shoe/slipper maintain place
+					Temple la shoe/slipper maintain pandravagaa nambaa keta(client) token kuduthuruvaga 
+					nambaa etha vaitchu reurn shoe/slipper vakekalaim
+					
+					
+			In programming way
+				-> Data Transmission
+					-> Following Some Protocals
+						- HTTP(Hyper text tansfer protocal) 
+							- Stateless and Stateful Protocal
+							-> https://www.geeksforgeeks.org/difference-between-stateless-and-stateful-protocol/
+						
+						- HTTP is Stateless Protocal
+						- TCP ?
+							
+							
+							
+						Session Management pandra one approch tha
+							- Cookie
+							- many approch there
+							
+							- In Django Session inu one thaneyaa va irruku so no problem :)
+							
+							
+							-> HTTP vanthu Stateless Protocal so ethula yaru send pandra inu nothing is recorded so here do some trick ,
+									response pannapothu cookies inu additional object la return pannuvagaa
+								
+								- etha cookies(object) client mechine/browser la store yakuim
+									
+							Work Follow
+							
+							Client --> HTTPRequest ==> Server
+							Client <-- HTTPResponse + Cookie(Object) <== Server
+
+						
+						What is Cookie ?						
+						
+							Little bit of information storing place
+							eg: lap-model , ISP providor and etc..
+							
+							
+							Types of Cookie
+								
+								There are three types of computer cookies: session, persistent, and third-party.
+								These virtually invisible text files are all very different.
+								Each with their own mission, these cookies are made to track, collect, and store any data that companies request.
+								
+								1 - https://www.internetcookies.org/about-cookies/
+								2 - https://www.tutorialspoint.com/internet_security/internet_security_cookies.htm
+								3 - https://www.makeuseof.com/tag/types-browser-cookies-to-know-about/
+								
+																	
+							
+							
+								- Each and every website may have uniquee cookies
+								- separate website and separate cookies
+								
+								
+							
+							
+								- Privacy Badger Adds-on 
+								- eff Privacy Badger
+								
+								<- https://www.fsf.org/ ->
+								
+								
+		
+	
+	
+	
+	
+===============================================================================================================	
+
+Step 1 :
+		
+		- Creation Project and App
+		- After that
+		
+Step 2 :
+		
+		Go to views.py files
+		
+		
+from django.shortcuts import render
+
+# Create your views here.
+
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("<h1>Welcome page</h1>")
+
+
+# Find cookies TimeStap 35.00 video 8
+
+def cookies_count_view(request):
+    count = request.COOKIES.get('count',0)
+    totalCount = int(count) + 1
+    response = render(request, 'cookiesApp/cookie.html', context={'count': totalCount})
+    # How set the cookies TimeStamp : 43:00 8th video
+    response.set_cookie('count',totalCount)
+    return response
+    '''
+    KEY - VALUE PAIR
+    Cookies Present ==> get('key') return corresponding key VALUE
+    Cookies Absent ==> get() la default value set panna mudiuim
+                        cookies illanaa 5 is default value
+                        eg: get('key',5)
+
+    request.COOKIES('count',0)
+    'count' = Cookies irrutha cookie count ah yaduthu vaikuim
+    else
+    'count' ah zero inu vaitchukuim
+
+    -> each abd every time request varapothu cookies count ah increace pandra
+        totalCount = int(count) + 1
+
+    Note:- return in String values
+    '''			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===============================================================================================================	
+
+					<===  Cookies Drawback  ===>
+					
+					
+				1) Cookie --> No Security
+				2) Cookie --> less Information and only string value
+				3) Cookie --> count of cookies
+				
+				
+					==============================================================
+				In Django la etha cookies ah avoid pannatha
+				-> Session ID ikku koinduvanthaga
+				
+				-> Django provides full support for anonymous sessions.
+				
+				-> The session framework lets you store and retrieve arbitrary data on a per-site-visitor basis.
+				
+				->	Cookie client side la store pannetu irruthaga but ipo in Django Session Management la
+						It stores data on the _server side_ and abstracts the sending and receiving of cookies.
+				
+				
+				-> Cookies contain a session ID – not the data itself (unless you’re using the cookie based backend).
+				 
+					refer: https://docs.djangoproject.com/en/3.1/topics/http/sessions/
+							https://www.tutorialspoint.com/django/django_sessions.htm
+					
+					
+					
+					client -> HTTPRequest -> Server 
+								Now the Server create Session Object and Store it
+								
+					Client <-- HTTPResponse + Session ID(Object) <== Server
+					
+						Now Session ID Client and Server ikku available la irrukuim => ethutha Session API
+
+
+					Now we go to set Session ID in views.py file
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+

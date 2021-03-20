@@ -1,0 +1,319 @@
+Day 5
+
+models.py
+
+Step 1:  Go to models.py in Application-level folder
+
+			Here connect database
+			
+		
+Step 2: Register the models.py
+			- Go to Setting.py
+			Chcek the database related stuff is avaliable
+			
+Step 3:
+		Now the Verify whether the db.sqlite3 is availble or not
+		
+		- Open CMD type 
+			py manage.py shell
+				you can see(InteractiveConsole) in CMD
+				
+		-	Now Verify the connection 
+			Type
+				>>> from django.db import connection
+				>>> con = connection.cursor()
+				>>>
+				
+				No error's occer means the connection is established successfully
+				
+				
+Step 4: Again go models.py file
+					- 
+		https://thedocs.dev/en/django/3.1/topics/db/models/
+	
+		=>  Generally, each model maps to a single database table.
+				Fields
+					- name
+					- salary
+		
+		=>  Each attribute of the model represents a database field.
+		
+		=>  Each model is a Python class which is a subclasses of django.db.models.Model.
+			
+			
+		
+		eg: 
+			class Employee(models.Model):
+				empNo = models.IntegerField()
+				empName = models.CharField(max_length=20)
+				empSalary = models.IntegerField()
+				empyAddress = models.CharField(max_length=50)
+
+		Employee is child class of models.Model like inheritance
+		
+		//  Inheritance => An object of one class behaving as an object of another class
+		
+		
+		
+		
+====================== ====================== Day 6: ====================== ====================== 
+
+	Django Work follow
+	
+	Model View Template(MVT)
+	
+	db -> views -> html
+	
+	models.py -> views.py -> templates
+		
+
+Step 5:
+		With all of this, Django gives you an automatically-generated database-access API
+			
+		Now we create a table for above Employee class datas
+		
+		- Go to CMD and Type
+		- py manage.py makemigrations
+			
+		-You can see like this
+			Migrations for 'dbApp':
+				dbApp\migrations\0001_initial.py
+					- Create model Employee
+		
+			
+		- Suppose we have more then one application 
+			- Go to CMD and Type
+				- py manage.py makemigrations <app-name> eg:dbApp
+		
+		- makemigrations inu kudutha many operations running
+		
+		- Now the table creation process is ready only not created
+		
+	
+Step 6:
+		py manage.py migrate
+		
+		
+		
+		Operations to perform:
+		  Apply all migrations: admin, auth, contenttypes, dbApp, sessions
+		Running migrations:
+		  Applying contenttypes.0001_initial... OK
+		  Applying auth.0001_initial... OK
+		  Applying admin.0001_initial... OK
+		  Applying admin.0002_logentry_remove_auto_add... OK
+		  Applying admin.0003_logentry_add_action_flag_choices... OK
+		  Applying contenttypes.0002_remove_content_type_name... OK
+		  Applying auth.0002_alter_permission_name_max_length... OK
+		  Applying auth.0003_alter_user_email_max_length... OK
+		  Applying auth.0004_alter_user_username_opts... OK
+		  Applying auth.0005_alter_user_last_login_null... OK
+		  Applying auth.0006_require_contenttypes_0002... OK
+		  Applying auth.0007_alter_validators_add_error_messages... OK
+		  Applying auth.0008_alter_user_username_max_length... OK
+		  Applying auth.0009_alter_user_last_name_max_length... OK
+		  Applying auth.0010_alter_group_name_max_length... OK
+		  Applying auth.0011_update_proxy_permissions... OK
+		  Applying auth.0012_alter_user_first_name_max_length... OK
+		  Applying dbApp.0001_initial... OK
+		  Applying sessions.0001_initial... OK
+
+		Applying dbApp.0001_initial... OK
+		Now we successfully create a tables
+		
+		
+			(Optional)
+				- Now we check the table status , whether the table is create or not
+				- Go to CMD and Type
+
+					(DjangoPay-dcNYkXsm) C:\DjangoPay\modelDemo>py manage.py sqlmigrate dbApp 0001
+					BEGIN;
+					--
+					-- Create model Employee
+					--
+					CREATE TABLE "dbApp_employee" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "empNo" integer NOT NULL, "empName" varchar(20) NOT NULL, "empSalary" integer NOT NULL, "empyAddress" varchar(50) NOT NULL);
+					COMMIT;
+				
+					Now we Verify the table creation and background auto queries creation
+					
+					
+					
+Step 7:
+			- TABLE la successfully la create pannetoim , etha table la tha use panna  pora inu sollauim la so
+			- Now we do that
+
+			- Go to admin.py
+			
+				# import your models here.
+				from dbApp.models import Employee
+				# Register your models here.
+				admin.site.register(Employee)
+
+				Here dbApp is <app-name> and Employee is our class in models.py file
+
+
+Step 8: Create SuperUser(admin) 			
+		- Go to CMD and type
+			(DjangoPay-dcNYkXsm) C:\DjangoPay\modelDemo>py manage.py createsuperuser
+			Username (leave blank to use 'nishanth'): root
+			Email address: langscapeDjango@gmail.com
+			Password:
+			Password (again):
+			The password is too similar to the email address.
+			Bypass password validation and create user anyway? [y/N]: y
+
+			Superuser created successfully
+		
+			
+			
+		
+Step 9: 
+		- Go to http://localhost:8000/admin/ pages 
+		- Login 
+		- Now you can see the your db-name 
+		
+
+
+		Recap:
+			- makemigrations = create TABLE(SQL Query Creation)
+			- migrate		 = SQL Query(Execution)
+			
+			============================================ Model finished ============================================ 
+			
+			
+		
+			
+			
+			
+			Then We go For views.py
+			
+			
+Step 1: Go to models.py
+				- Adding String Representation
+				class Employee(models.Model):
+					empNo = models.IntegerField()
+					empName = models.CharField(max_length=20)
+					empSalary = models.IntegerField()
+					empyAddress = models.CharField(max_length=50)
+
+					def __str__(self):
+						return "Employee details are shared" 
+
+			
+		
+		
+Step 2: Go to admin.py
+		
+		- register the 
+		
+		
+		from django.contrib import admin
+
+
+		# import your models here.
+		from dbApp.models import Employee
+		# Register your models here.
+		admin.site.register(Employee)
+
+		class EmployeeAdmin(admin.ModelAdmin):
+			emp_details = ['empNo', 'empName', 'empSalary', 'empAddress']
+		admin.site.register(EmployeeAdmin)
+		
+		
+
+Step 3:
+			Go to views.py
+			
+			
+			
+Step 4:
+		- create templates and statics folder
+		
+		- Go to settings.py
+		
+		- register the templates and statics folder directory in setting.py
+		
+		
+Step 5:
+		- Go to templates/app-name folder 
+		- create HTML file
+		
+		- direct ah HTML poieee Database content ah yaduthutu varumaa illa so we go for views.py
+		
+Step 6:
+			go to views.py file
+			
+			from django.shortcuts import render
+
+			# Create your views here.
+
+			from django.http import HttpResponse
+
+			def home(request):
+				message = "<i>This is Welcome Page</i>"
+				return HttpResponse(message)
+
+			#
+			from dbApp.models import Employee
+
+			def empDetails(request):
+				emp_data = Employee.objects.all()
+				emp_dict={'emp_list':emp_data}
+				return render(request,'dbApp/base.html',context=emp_dict)
+						
+						
+Step 7:
+
+			go to admins.py
+			
+			from django.contrib import admin
+
+
+			# import your models here.
+			from dbApp.models import Employee
+			# Register your models here.
+
+			class EmployeeAdmin(admin.ModelAdmin):
+				emp_details = ['empNo', 'empName', 'empSalary', 'empAddress']
+
+			admin.site.register(Employee,EmployeeAdmin)
+			
+			
+			
+Step 8:
+				Go to templates/app-name folder
+				
+				<!DOCTYPE html>
+				<html lang="en">
+					{% load static %}
+				<head>
+					<meta charset="UTF-8">
+					<meta http-equiv="X-UA-Compatible" content="IE=edge">
+					<meta name="viewport" content="width=device-width, initial-scale=1.0">
+					<title>DB Model</title>
+				</head>
+				<body>
+
+
+						<table>
+							{% if emp_list %}
+							{% for data in emp_list %}
+							<tr>
+							<th>ID</th>
+							<td>{{ data.empNo }}</td>
+							<th>Name : </th>
+							<td>{{ data.empName }}</td>
+							<th>Salary : </th>
+							<td>{{ data.empSalary }}</td>
+							<th>Address : </th>
+							<td>{{ data.empyAddress }}</td>
+						</tr>
+							{% endfor %}
+							{% endif %}
+						</table>
+
+				</body>
+				</html>
+				
+				
+				

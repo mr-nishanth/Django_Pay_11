@@ -1,0 +1,69 @@
+Django Templates
+
+views.py la tha HTMl code write pannertu irruthoim 
+
+Ethu naal la
+	- Code Readability
+	- No proper separation
+	- Code Reusability 
+	illa
+	
+So ipo HTML la sepearate file la write pannauim 
+Ethu ikku name the Templates
+
+
+html file - Template => rendering pannauim
+
+	
+After Adding app-name in setting.py file
+
+Step 1 : Go to Project_file eg:(templateDemo)
+			- create new folder , 
+			- manage.py irrukara location ls tha file create pannauim
+			- folder name is templates it most
+			- In the templates folder we create a html , css and js files
+		
+			Now the templates is project-level folder
+	
+		Project-level folder na many app irrukalaim la so 
+
+Step 2: again create new folder 
+		- the folder name is your app-name
+		
+		-etha templates-file loaction ah django ikku sollanuim so
+		
+Step 3: Go to Setting.py file
+			
+			1 - TEMPLATES
+			2 - 'DIRS': [], enga tha templates location ah sollanuim
+			3 - In setting file 
+					Adding -> import os
+					
+					 create -> BASE_DIR2 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+					
+					BASE_DIR2 = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
+					TEMPLATES_DIR = os.path.join(BASE_DIR2,'templates')
+
+			
+
+			4 - 'DIRS': [TEMPLATES_DIR] 
+			
+			
+			
+Step 4: Go to Templates folder
+				- App folder
+				- Create html file
+				
+				
+				
+Step 5:	Go to views.py				
+		- Now no need HttpResponse
+		- Now we use render function
+		
+		def display(request):
+			return render(request,'demoApp/base.html')
+			
+			I think here render is directly go to templates folder
+
+Step 6: Go to urls.py
+			

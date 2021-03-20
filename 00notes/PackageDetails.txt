@@ -1,0 +1,83 @@
+package files
+
+1 - __init__.py 
+	Black python script
+	Django will consider the particular folder as python package
+	
+2 - setting.py
+	Project setting , Configurations files , intalled Application , database Configurations , middleware Configurations
+	
+		Project --> Application
+		eg:
+				SBI --> Mutual , Bank , Insurance
+				SBI is Project
+				Mutual , Bank , Insurance are Applications
+				
+3 - urls.py
+	URL: website link eg: dinakaran.com
+						dinakaran.com/chennaiNews
+						dinakaran.com/employment
+	
+	urls-patters will be stored
+	Website - Web pages
+	/chennaiNews
+	/maduraiNews
+	
+4 - wsgi.py
+	wsgi = Web Server Gateway Interface
+	
+	This file is used when we deploy our application in Production Server
+	
+	What is Production Server ?
+	
+	DEV Enviroment
+	
+	Test  - UAT = User Acceptance Test Enviroment
+	PROD  - 
+	
+
+
+TimeStamp:16:00:00	
+5 - asgi.py
+		Asynchronous
+		what is Asynchronous and Synchronous?
+		
+		Synchronous 
+	
+	
+
+6 - manage.py
+		Running our  Server ,
+		Running Test ,
+		Creating migration
+		
+=================================================================================================================
+
+After Created the application
+
+first Application Specific files:
+
+1 - __init__.py		
+
+2 - admin.py 
+	admin interface - Django models
+	
+3 - apps.py	
+
+4 - models.py 
+	application data models
+
+5 - tests.py
+		testing function
+		
+6 - views.py
+		URL 
+	1. Function based Views
+	2. Class based Views
+Floader (Migrations)
+	db specific information
+
+
+
+
+		

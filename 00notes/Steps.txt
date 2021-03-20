@@ -1,0 +1,78 @@
+
+Django Server
+Django Project
+Startapp
+Project --> Setting.py
+Views.py
+
+
+
+====================================================
+
+
+firstProject = single page (welcome)
+secondProject = 1st app -> multiple page (gm,ga,ge,gn) and 2nd app -> timeApp (tellMeTime)
+
+
+thirdProject = create urls.py in Application level
+				
+			Step 1:	django-admin startproject thirdProject
+					move to thirdProject folder
+
+			Step 2:	py manage.py startapp testApp
+
+			Step 3: setting.py adding (testApp)
+			
+			Step 4: views.py (Create Business Logic)
+			
+			Step 5: Create a new file "urls.py"  in Application
+			
+			Step 6: Copy the Project Based urls.py Content
+			
+			Step 7: Paste created Application Based urls.py file
+			
+			Step 8: Back to Project Baseded urls.py adding new path
+			
+					Important one :
+					import the include function and app-name
+						from django.urls import include, path
+						from <app-name import urls
+							eg: from testApp import urls
+
+					path('app-name/',include('app-name.urls')),
+					eg: 
+						path('testApp/', include('testApp.urls')),
+
+
+
+
+
+
+
+1) Creation of Django Project
+	django-admin startproject <project-name>
+	
+2) Creation of Django Application
+	python manage.py startapp <app-name>
+
+3) Adding application to my project
+	setting.py -> INSTALLED_APPS
+	
+4) views.py (Business Logic)
+	eg:
+	def wish(request):
+		return HttpResponce("<h1>Say Somthing</h1>")
+		
+5) urls.py
+	import the views.py function/class
+	
+	adding the urlpattern
+	
+6) RunServer
+	python manage.py runserver
+	
+	Optional
+	Change port number
+		python manage.py runserver 8080
+		localhost:8080
+		

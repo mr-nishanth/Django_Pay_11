@@ -1,0 +1,15 @@
+Model   
+
+View 	 = Business Logic
+
+Template = Presentation Layer
+		
+			Image ?
+			
+			Style ?
+				CSS = Cascading Style Sheet
+				
+			static files	
+				Images/Videos/Audios
+				
+				
